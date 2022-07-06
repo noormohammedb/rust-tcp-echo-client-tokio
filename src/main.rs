@@ -21,7 +21,10 @@ fn main() {
 
         // read the result
         let mut buffer = [0; 1024];
-        let len = tcp_stream_connect.read(&mut buffer).unwrap();
+        tcp_stream_connect.read(&mut buffer).unwrap();
+        let message = String::from_utf8_lossy(&buffer);
+
+        println!("received: {}", message);
     } else {
         println!("failed to connect");
         // return;
